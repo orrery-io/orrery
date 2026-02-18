@@ -1,0 +1,82 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        SELECT\n            pi.id, pi.process_definition_id, pi.process_definition_version,\n            pi.business_key, pi.state, pi.variables,\n            pi.active_element_ids, pi.created_at, pi.ended_at, pi.error_message,\n            (\n                SELECT t.element_id\n                FROM tasks t\n                WHERE t.process_instance_id = pi.id AND t.state = 'FAILED'\n                ORDER BY t.completed_at DESC NULLS LAST\n                LIMIT 1\n            ) AS failed_at_element_id\n        FROM process_instances pi\n        WHERE pi.id = $1\n        ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 1,
+        "name": "process_definition_id",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 2,
+        "name": "process_definition_version",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 3,
+        "name": "business_key",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 4,
+        "name": "state",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 5,
+        "name": "variables",
+        "type_info": "Jsonb"
+      },
+      {
+        "ordinal": 6,
+        "name": "active_element_ids",
+        "type_info": "Jsonb"
+      },
+      {
+        "ordinal": 7,
+        "name": "created_at",
+        "type_info": "Timestamptz"
+      },
+      {
+        "ordinal": 8,
+        "name": "ended_at",
+        "type_info": "Timestamptz"
+      },
+      {
+        "ordinal": 9,
+        "name": "error_message",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 10,
+        "name": "failed_at_element_id",
+        "type_info": "Varchar"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      null
+    ]
+  },
+  "hash": "695d201e9c0ab7bde1532dc1e208fd26f9ea4a3d53a8c76cb1d2184aa3050b27"
+}

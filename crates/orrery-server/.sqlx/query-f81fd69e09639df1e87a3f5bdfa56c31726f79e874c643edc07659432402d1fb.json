@@ -1,0 +1,20 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "INSERT INTO timer_start_definitions (id, process_def_key, process_def_version, element_id, timer_kind, expression, next_due_at) VALUES ($1, $2, $3, $4, $5, $6, $7) ON CONFLICT (process_def_key, process_def_version, element_id) DO UPDATE SET expression = EXCLUDED.expression, timer_kind = EXCLUDED.timer_kind, next_due_at = EXCLUDED.next_due_at, enabled = TRUE",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Text",
+        "Int4",
+        "Text",
+        "Text",
+        "Text",
+        "Timestamptz"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "f81fd69e09639df1e87a3f5bdfa56c31726f79e874c643edc07659432402d1fb"
+}

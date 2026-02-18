@@ -1,0 +1,32 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT id, process_instance_id, element_id FROM scheduled_timers WHERE due_at <= NOW() AND fired = FALSE",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 1,
+        "name": "process_instance_id",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 2,
+        "name": "element_id",
+        "type_info": "Varchar"
+      }
+    ],
+    "parameters": {
+      "Left": []
+    },
+    "nullable": [
+      false,
+      false,
+      false
+    ]
+  },
+  "hash": "dbe0117de23f7c127a3f2481d0877e49b8e369e4fdac82927ec10c101b181189"
+}

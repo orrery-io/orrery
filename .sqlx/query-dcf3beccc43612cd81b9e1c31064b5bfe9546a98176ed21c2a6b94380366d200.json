@@ -1,0 +1,46 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT process_definition_id, process_definition_version, variables, active_element_ids, state FROM process_instances WHERE id = $1",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "process_definition_id",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 1,
+        "name": "process_definition_version",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 2,
+        "name": "variables",
+        "type_info": "Jsonb"
+      },
+      {
+        "ordinal": 3,
+        "name": "active_element_ids",
+        "type_info": "Jsonb"
+      },
+      {
+        "ordinal": 4,
+        "name": "state",
+        "type_info": "Varchar"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "hash": "dcf3beccc43612cd81b9e1c31064b5bfe9546a98176ed21c2a6b94380366d200"
+}

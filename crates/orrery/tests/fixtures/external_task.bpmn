@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:orrery="http://orrery.dev/schema/1.0/bpmn"
+             targetNamespace="http://example.org">
+  <process id="ext_process" isExecutable="true">
+    <startEvent id="start">
+      <outgoing>f1</outgoing>
+    </startEvent>
+    <serviceTask id="pay" name="Process Payment"
+                 orrery:type="external"
+                 orrery:topic="payments">
+      <incoming>f1</incoming>
+      <outgoing>f2</outgoing>
+    </serviceTask>
+    <endEvent id="end">
+      <incoming>f2</incoming>
+    </endEvent>
+    <sequenceFlow id="f1" sourceRef="start" targetRef="pay"/>
+    <sequenceFlow id="f2" sourceRef="pay" targetRef="end"/>
+  </process>
+</definitions>

@@ -1,0 +1,92 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        SELECT\n            pi.id, pi.process_definition_id, pi.process_definition_version,\n            pi.business_key, pi.state, pi.variables,\n            pi.active_element_ids, pi.created_at, pi.ended_at, pi.error_message,\n            (\n                SELECT t.element_id\n                FROM tasks t\n                WHERE t.process_instance_id = pi.id AND t.state = 'FAILED'\n                ORDER BY t.completed_at DESC NULLS LAST\n                LIMIT 1\n            ) AS failed_at_element_id,\n            COUNT(*) OVER() AS \"total_count!: i64\"\n        FROM process_instances pi\n        WHERE ($1::text IS NULL OR pi.process_definition_id = $1)\n          AND ($2::text IS NULL OR pi.state = $2)\n          AND ($3::int IS NULL OR pi.process_definition_version = $3)\n        ORDER BY pi.created_at DESC\n        LIMIT $4 OFFSET $5\n        ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 1,
+        "name": "process_definition_id",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 2,
+        "name": "process_definition_version",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 3,
+        "name": "business_key",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 4,
+        "name": "state",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 5,
+        "name": "variables",
+        "type_info": "Jsonb"
+      },
+      {
+        "ordinal": 6,
+        "name": "active_element_ids",
+        "type_info": "Jsonb"
+      },
+      {
+        "ordinal": 7,
+        "name": "created_at",
+        "type_info": "Timestamptz"
+      },
+      {
+        "ordinal": 8,
+        "name": "ended_at",
+        "type_info": "Timestamptz"
+      },
+      {
+        "ordinal": 9,
+        "name": "error_message",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 10,
+        "name": "failed_at_element_id",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 11,
+        "name": "total_count!: i64",
+        "type_info": "Int8"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Text",
+        "Int4",
+        "Int8",
+        "Int8"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      null,
+      null
+    ]
+  },
+  "hash": "db2fae5a854b1c0a4e0a668b7441b25837d49ac7cf5a16cf72c3033fba7aa3b0"
+}

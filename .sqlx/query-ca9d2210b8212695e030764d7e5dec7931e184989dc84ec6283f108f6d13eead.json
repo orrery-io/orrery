@@ -1,0 +1,23 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT t.element_id FROM tasks t JOIN process_instances pi ON t.process_instance_id = pi.id WHERE pi.process_definition_id = $1 AND ($2::int IS NULL OR pi.process_definition_version = $2) AND pi.state = 'FAILED' AND t.state = 'FAILED'",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "element_id",
+        "type_info": "Varchar"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Int4"
+      ]
+    },
+    "nullable": [
+      false
+    ]
+  },
+  "hash": "ca9d2210b8212695e030764d7e5dec7931e184989dc84ec6283f108f6d13eead"
+}

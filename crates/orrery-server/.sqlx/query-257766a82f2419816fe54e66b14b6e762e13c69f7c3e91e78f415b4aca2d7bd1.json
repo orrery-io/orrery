@@ -1,0 +1,15 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "DELETE FROM message_subscriptions WHERE event_gateway_group_id = $1 AND element_id != $2",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Text"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "257766a82f2419816fe54e66b14b6e762e13c69f7c3e91e78f415b4aca2d7bd1"
+}

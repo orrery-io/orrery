@@ -1,0 +1,18 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        INSERT INTO signal_subscriptions (id, process_instance_id, element_id, signal_ref, event_gateway_group_id)\n        VALUES ($1, $2, $3, $4, $5)\n        ",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Varchar",
+        "Varchar",
+        "Varchar",
+        "Varchar",
+        "Varchar"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "03b75ff0ad8d0243bdf9fded8ef4b2c8da254feebf2caba584ef8f813592465b"
+}

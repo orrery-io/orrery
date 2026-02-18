@@ -1,0 +1,19 @@
+[package]
+name = "orrery-worker"
+version = "0.1.0"
+edition = "2021"
+description = "High-level external task worker for the Orrery BPMN workflow engine"
+license = "Apache-2.0"
+repository = "https://github.com/orrery-io/orrery"
+
+[dependencies]
+orrery-client = { path = "../orrery-client", version = "0.1.0" }
+orrery-types = { path = "../orrery-types", version = "0.1.0" }
+tokio = { version = "1", features = ["full"] }
+serde_json = "1"
+tracing = "0.1"
+anyhow = "1"
+
+[dev-dependencies]
+tokio = { version = "1", features = ["full"] }
+wiremock = "0.6"

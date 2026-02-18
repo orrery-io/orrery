@@ -1,0 +1,23 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT element_id FROM message_subscriptions WHERE event_gateway_group_id = $1 AND element_id != $2 AND consumed_at IS NULL\n                 UNION ALL\n                 SELECT element_id FROM scheduled_timers WHERE event_gateway_group_id = $1 AND element_id != $2\n                 UNION ALL\n                 SELECT element_id FROM signal_subscriptions WHERE event_gateway_group_id = $1 AND element_id != $2 AND consumed_at IS NULL",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "element_id",
+        "type_info": "Varchar"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Text"
+      ]
+    },
+    "nullable": [
+      null
+    ]
+  },
+  "hash": "d7f0b552bbb8aa62fcfd99c5be69951846b66f791aa4c011346e390c25709b21"
+}

@@ -1,0 +1,15 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "UPDATE process_instances SET state = 'FAILED', ended_at = NOW(), error_message = $1 WHERE id = $2",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Text"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "f08b102f5916b111122f4476b2937d47342c6680d5e067bf86ccb94abec3fe7f"
+}

@@ -1,0 +1,17 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "UPDATE tasks SET state = 'CREATED', claimed_by = NULL,\n             locked_until = NULL, claimed_at = NULL,\n             retry_count = $1, max_retries = $2, next_retry_at = $3\n             WHERE id = $4",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Int4",
+        "Int4",
+        "Timestamptz",
+        "Text"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "65b42c11857b68f8d512efde366f943ad73efbc34719d431ab5a896f7094edab"
+}

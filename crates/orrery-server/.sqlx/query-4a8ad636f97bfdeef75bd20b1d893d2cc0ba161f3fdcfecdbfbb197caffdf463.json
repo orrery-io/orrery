@@ -1,0 +1,18 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "INSERT INTO message_start_definitions\n                     (id, process_def_key, process_def_version, element_id, message_name)\n                 VALUES ($1, $2, $3, $4, $5)\n                 ON CONFLICT (process_def_key, process_def_version, element_id) DO UPDATE\n                     SET message_name = EXCLUDED.message_name,\n                         enabled = TRUE",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Varchar",
+        "Varchar",
+        "Int4",
+        "Varchar",
+        "Varchar"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "4a8ad636f97bfdeef75bd20b1d893d2cc0ba161f3fdcfecdbfbb197caffdf463"
+}

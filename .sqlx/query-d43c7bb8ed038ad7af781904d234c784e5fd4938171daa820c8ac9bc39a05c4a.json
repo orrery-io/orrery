@@ -1,0 +1,14 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "UPDATE scheduled_timers SET fired = TRUE, fired_at = NOW() WHERE process_instance_id = $1 AND fired = FALSE",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "d43c7bb8ed038ad7af781904d234c784e5fd4938171daa820c8ac9bc39a05c4a"
+}

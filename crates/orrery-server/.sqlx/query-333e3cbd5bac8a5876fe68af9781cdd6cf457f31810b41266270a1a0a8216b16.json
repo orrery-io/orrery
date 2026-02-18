@@ -1,0 +1,50 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        WITH latest AS (\n            SELECT DISTINCT ON (id) id, version, created_at\n            FROM process_definitions\n            ORDER BY id, version DESC\n        ),\n        counts AS (\n            SELECT\n                process_definition_id,\n                COUNT(*) FILTER (WHERE state IN ('RUNNING','WAITING_FOR_TASK','WAITING_FOR_TIMER',\n                                                 'WAITING_FOR_MESSAGE','WAITING_FOR_SIGNAL')) AS running_count,\n                COUNT(*) FILTER (WHERE state = 'COMPLETED') AS completed_count,\n                COUNT(*) FILTER (WHERE state = 'FAILED') AS failed_count\n            FROM process_instances\n            GROUP BY process_definition_id\n        )\n        SELECT\n            l.id,\n            l.version,\n            l.created_at,\n            COALESCE(c.running_count, 0) AS \"running_count!: i64\",\n            COALESCE(c.completed_count, 0) AS \"completed_count!: i64\",\n            COALESCE(c.failed_count, 0) AS \"failed_count!: i64\"\n        FROM latest l\n        LEFT JOIN counts c ON c.process_definition_id = l.id\n        ORDER BY l.created_at DESC\n        ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 1,
+        "name": "version",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 2,
+        "name": "created_at",
+        "type_info": "Timestamptz"
+      },
+      {
+        "ordinal": 3,
+        "name": "running_count!: i64",
+        "type_info": "Int8"
+      },
+      {
+        "ordinal": 4,
+        "name": "completed_count!: i64",
+        "type_info": "Int8"
+      },
+      {
+        "ordinal": 5,
+        "name": "failed_count!: i64",
+        "type_info": "Int8"
+      }
+    ],
+    "parameters": {
+      "Left": []
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      null,
+      null,
+      null
+    ]
+  },
+  "hash": "333e3cbd5bac8a5876fe68af9781cdd6cf457f31810b41266270a1a0a8216b16"
+}

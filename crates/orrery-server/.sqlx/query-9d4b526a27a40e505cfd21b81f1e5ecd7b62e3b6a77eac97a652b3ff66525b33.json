@@ -1,0 +1,19 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "UPDATE process_instances SET state = $1, variables = $2, active_element_ids = $3, ended_at = $4, error_message = $5 WHERE id = $6",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Varchar",
+        "Jsonb",
+        "Jsonb",
+        "Timestamptz",
+        "Text",
+        "Text"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "9d4b526a27a40e505cfd21b81f1e5ecd7b62e3b6a77eac97a652b3ff66525b33"
+}

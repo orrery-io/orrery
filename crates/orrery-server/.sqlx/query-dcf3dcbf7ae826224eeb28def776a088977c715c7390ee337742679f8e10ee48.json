@@ -1,0 +1,68 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "UPDATE scheduled_timers SET due_at = $1, expression = $2, timer_kind = $3 WHERE id = $4 AND process_instance_id = $5 AND fired = FALSE RETURNING id, element_id, timer_kind, expression, due_at, fired, fired_at, created_at",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 1,
+        "name": "element_id",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 2,
+        "name": "timer_kind",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 3,
+        "name": "expression",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 4,
+        "name": "due_at",
+        "type_info": "Timestamptz"
+      },
+      {
+        "ordinal": 5,
+        "name": "fired",
+        "type_info": "Bool"
+      },
+      {
+        "ordinal": 6,
+        "name": "fired_at",
+        "type_info": "Timestamptz"
+      },
+      {
+        "ordinal": 7,
+        "name": "created_at",
+        "type_info": "Timestamptz"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Timestamptz",
+        "Varchar",
+        "Text",
+        "Text",
+        "Text"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+    ]
+  },
+  "hash": "dcf3dcbf7ae826224eeb28def776a088977c715c7390ee337742679f8e10ee48"
+}

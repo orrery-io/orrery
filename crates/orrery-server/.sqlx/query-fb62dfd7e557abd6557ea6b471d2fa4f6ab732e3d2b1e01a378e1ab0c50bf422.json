@@ -1,0 +1,16 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n                INSERT INTO tasks (id, process_instance_id, element_id, element_type, state, variables)\n                VALUES ($1, $2, $3, 'SERVICE_TASK', 'CREATED', '{}')\n                ON CONFLICT DO NOTHING\n                ",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Varchar",
+        "Varchar",
+        "Varchar"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "fb62dfd7e557abd6557ea6b471d2fa4f6ab732e3d2b1e01a378e1ab0c50bf422"
+}

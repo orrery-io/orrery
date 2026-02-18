@@ -1,0 +1,15 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "UPDATE message_boundary_subscriptions SET consumed_at = NOW() WHERE attached_to_element = $1 AND process_instance_id = $2 AND consumed_at IS NULL",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Text"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "ba2917e6a78c8a5bf193ba7e1abd02216fb5cb13e32ef7e4e016d510ad56b725"
+}

@@ -1,0 +1,12 @@
+[package]
+name = "orrery-types"
+version = "0.1.0"
+edition = "2021"
+description = "Shared types for the Orrery BPMN workflow engine"
+license = "Apache-2.0"
+repository = "https://github.com/orrery-io/orrery"
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+chrono = { version = "0.4", features = ["serde"] }

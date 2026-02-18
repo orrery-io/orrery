@@ -1,0 +1,15 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "DELETE FROM scheduled_timers WHERE event_gateway_group_id = $1 AND element_id != $2",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Text"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "0c142064d69bf212cc60b79db9de77a4ce3384f3f61b86376534568ca080c4b1"
+}

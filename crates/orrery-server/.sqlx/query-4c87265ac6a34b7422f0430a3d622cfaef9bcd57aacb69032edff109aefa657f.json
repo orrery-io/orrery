@@ -1,0 +1,15 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "UPDATE message_start_definitions SET enabled = FALSE\n         WHERE process_def_key = $1 AND process_def_version < $2",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Int4"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "4c87265ac6a34b7422f0430a3d622cfaef9bcd57aacb69032edff109aefa657f"
+}

@@ -1,0 +1,19 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        INSERT INTO message_subscriptions\n            (id, process_instance_id, element_id, message_name, correlation_key_value, event_gateway_group_id)\n        VALUES ($1, $2, $3, $4, $5, $6)\n        ",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Varchar",
+        "Varchar",
+        "Varchar",
+        "Varchar",
+        "Varchar",
+        "Varchar"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "4a79a235fe1626d74da9d29c0755b82f7b6269e8766ebcef7e55a0d9c6f9cbd2"
+}

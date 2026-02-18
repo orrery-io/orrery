@@ -1,0 +1,27 @@
+.env
+target/
+.worktrees/
+crates/orrery-ui/dist/
+crates/orrery-ui/style/output.css
+?*/**/CLAUDE.md
+?*/CLAUDE.md
+.vscode
+/docs/
+.DS_Store
+
+# Clojure tooling
+.cpcache/
+.clj-kondo/
+.lsp/
+clojure.iml
+
+# SDK build artifacts
+sdks/clojure/target/
+sdks/typescript/dist/
+sdks/typescript/node_modules/
+
+# Idea project files
+.idea/
+
+# Claude
+.claude/

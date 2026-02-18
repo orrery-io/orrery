@@ -1,0 +1,35 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT id, process_instance_id, element_id FROM scheduled_timers WHERE id = $1 AND process_instance_id = $2 AND fired = FALSE",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 1,
+        "name": "process_instance_id",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 2,
+        "name": "element_id",
+        "type_info": "Varchar"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Text"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      false
+    ]
+  },
+  "hash": "3fb13fb0ee4c399bfe7d059e0196b70bd085a794687722e6a9eb67d2aad53d06"
+}

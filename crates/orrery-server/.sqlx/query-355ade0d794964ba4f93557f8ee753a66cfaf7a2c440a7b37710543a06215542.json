@@ -1,0 +1,95 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        SELECT t.id, t.process_instance_id, pi.process_definition_id,\n               t.element_id, t.element_type, t.state,\n               t.claimed_by, t.variables, t.created_at, t.claimed_at, t.completed_at,\n               t.retry_count, t.max_retries\n        FROM tasks t\n        JOIN process_instances pi ON pi.id = t.process_instance_id\n        WHERE ($1::text IS NULL OR t.state = $1)\n          AND ($2::text IS NULL OR t.process_instance_id = $2)\n        ORDER BY t.created_at ASC\n        ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 1,
+        "name": "process_instance_id",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 2,
+        "name": "process_definition_id",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 3,
+        "name": "element_id",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 4,
+        "name": "element_type",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 5,
+        "name": "state",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 6,
+        "name": "claimed_by",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 7,
+        "name": "variables",
+        "type_info": "Jsonb"
+      },
+      {
+        "ordinal": 8,
+        "name": "created_at",
+        "type_info": "Timestamptz"
+      },
+      {
+        "ordinal": 9,
+        "name": "claimed_at",
+        "type_info": "Timestamptz"
+      },
+      {
+        "ordinal": 10,
+        "name": "completed_at",
+        "type_info": "Timestamptz"
+      },
+      {
+        "ordinal": 11,
+        "name": "retry_count",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 12,
+        "name": "max_retries",
+        "type_info": "Int4"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Text"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      true,
+      false,
+      false
+    ]
+  },
+  "hash": "355ade0d794964ba4f93557f8ee753a66cfaf7a2c440a7b37710543a06215542"
+}

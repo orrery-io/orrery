@@ -1,0 +1,82 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT id, process_instance_id, element_id, state, claimed_by,\n                retry_count, max_retries, topic, locked_until, created_at, variables\n         FROM tasks WHERE id = $1",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 1,
+        "name": "process_instance_id",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 2,
+        "name": "element_id",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 3,
+        "name": "state",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 4,
+        "name": "claimed_by",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 5,
+        "name": "retry_count",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 6,
+        "name": "max_retries",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 7,
+        "name": "topic",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 8,
+        "name": "locked_until",
+        "type_info": "Timestamptz"
+      },
+      {
+        "ordinal": 9,
+        "name": "created_at",
+        "type_info": "Timestamptz"
+      },
+      {
+        "ordinal": 10,
+        "name": "variables",
+        "type_info": "Jsonb"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      true,
+      false,
+      false
+    ]
+  },
+  "hash": "2ff00a1afdb350aad2eb0b8a18098a069f3b48e94cb0b7c46aad80f51f5e8cbb"
+}

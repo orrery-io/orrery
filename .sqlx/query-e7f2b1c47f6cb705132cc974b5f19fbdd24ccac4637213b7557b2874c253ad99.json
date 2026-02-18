@@ -1,0 +1,14 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "UPDATE tasks SET state = 'CANCELLED', completed_at = NOW() WHERE process_instance_id = $1 AND state IN ('CREATED', 'CLAIMED')",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "e7f2b1c47f6cb705132cc974b5f19fbdd24ccac4637213b7557b2874c253ad99"
+}

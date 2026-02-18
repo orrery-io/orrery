@@ -1,0 +1,40 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        SELECT id, process_instance_id, element_id, event_gateway_group_id\n        FROM signal_subscriptions\n        WHERE signal_ref = $1 AND consumed_at IS NULL\n        ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 1,
+        "name": "process_instance_id",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 2,
+        "name": "element_id",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 3,
+        "name": "event_gateway_group_id",
+        "type_info": "Varchar"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      true
+    ]
+  },
+  "hash": "0ded8662687217e7d8f1bc4a99bde4c604ce2c5a3303d9668eec198e9994221d"
+}

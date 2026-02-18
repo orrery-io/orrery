@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions
+  xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
+  targetNamespace="http://orrery.dev/test"
+  id="Definitions_1">
+  <bpmn:process id="timer-process" isExecutable="true">
+    <bpmn:startEvent id="start">
+      <bpmn:outgoing>sf1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="sf1" sourceRef="start" targetRef="timer1"/>
+    <bpmn:intermediateCatchEvent id="timer1">
+      <bpmn:outgoing>sf2</bpmn:outgoing>
+      <bpmn:timerEventDefinition>
+        <bpmn:timeDuration>PT1S</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:sequenceFlow id="sf2" sourceRef="timer1" targetRef="task1"/>
+    <bpmn:serviceTask id="task1">
+      <bpmn:outgoing>sf3</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="sf3" sourceRef="task1" targetRef="end"/>
+    <bpmn:endEvent id="end"/>
+  </bpmn:process>
+</bpmn:definitions>

@@ -1,0 +1,15 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "UPDATE tasks SET variables = variables || $1::jsonb\n                 WHERE process_instance_id = $2\n                   AND state IN ('CREATED', 'CLAIMED')",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Jsonb",
+        "Text"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "cac159118c7b49e4eed2194acf463055e7d75a207ff00a7d1c4e565a9439f2bc"
+}

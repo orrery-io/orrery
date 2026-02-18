@@ -1,0 +1,94 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        UPDATE tasks\n        SET state = 'FAILED', completed_at = NOW(), retry_count = retry_count + 1\n        WHERE id = $1 AND state = 'CLAIMED'\n        RETURNING id, process_instance_id, element_id, element_type, state,\n                  claimed_by, variables, created_at, claimed_at, completed_at,\n                  retry_count, max_retries, topic\n        ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 1,
+        "name": "process_instance_id",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 2,
+        "name": "element_id",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 3,
+        "name": "element_type",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 4,
+        "name": "state",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 5,
+        "name": "claimed_by",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 6,
+        "name": "variables",
+        "type_info": "Jsonb"
+      },
+      {
+        "ordinal": 7,
+        "name": "created_at",
+        "type_info": "Timestamptz"
+      },
+      {
+        "ordinal": 8,
+        "name": "claimed_at",
+        "type_info": "Timestamptz"
+      },
+      {
+        "ordinal": 9,
+        "name": "completed_at",
+        "type_info": "Timestamptz"
+      },
+      {
+        "ordinal": 10,
+        "name": "retry_count",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 11,
+        "name": "max_retries",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 12,
+        "name": "topic",
+        "type_info": "Varchar"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      true,
+      false,
+      false,
+      true
+    ]
+  },
+  "hash": "0769e4c4e0170af6f9d5fe14c5abe3422717313cc95a3c1355d8cc184ddf4f63"
+}

@@ -1,0 +1,15 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "UPDATE timer_start_definitions SET next_due_at = $1 WHERE id = $2",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Timestamptz",
+        "Text"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "f42b8bd37ca00b11f78d64adcc6448ffccea3c1bada7e371a6cd62bc9dfc9e3c"
+}

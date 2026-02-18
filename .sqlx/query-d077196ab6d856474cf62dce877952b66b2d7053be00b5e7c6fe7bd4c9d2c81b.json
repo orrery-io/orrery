@@ -1,0 +1,23 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT active_element_ids FROM process_instances WHERE process_definition_id = $1 AND ($2::int IS NULL OR process_definition_version = $2) AND state IN ('RUNNING', 'WAITING_FOR_TASK', 'WAITING_FOR_MESSAGE', 'WAITING_FOR_TIMER', 'WAITING_FOR_SIGNAL', 'FAILED')",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "active_element_ids",
+        "type_info": "Jsonb"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Int4"
+      ]
+    },
+    "nullable": [
+      false
+    ]
+  },
+  "hash": "d077196ab6d856474cf62dce877952b66b2d7053be00b5e7c6fe7bd4c9d2c81b"
+}

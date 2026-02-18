@@ -1,0 +1,20 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT COUNT(*) FROM process_instances WHERE state IN ('WAITING_FOR_TASK','WAITING_FOR_TIMER','WAITING_FOR_MESSAGE','WAITING_FOR_SIGNAL')",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "count",
+        "type_info": "Int8"
+      }
+    ],
+    "parameters": {
+      "Left": []
+    },
+    "nullable": [
+      null
+    ]
+  },
+  "hash": "f1967933a19466ddd09d8c29d9fcb899c528b612bd0c87e6101b5bff25b21523"
+}

@@ -1,0 +1,14 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "UPDATE signal_subscriptions SET consumed_at = NOW() WHERE process_instance_id = $1 AND consumed_at IS NULL",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "17e665dd2eb8dbaf0b75c864ce4c659d2f6348ca155ac7aa998b8bfbedcea9f9"
+}

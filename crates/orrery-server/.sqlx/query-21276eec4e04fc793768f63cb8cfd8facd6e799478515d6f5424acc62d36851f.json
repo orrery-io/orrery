@@ -1,0 +1,90 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        SELECT t.id, t.topic, t.process_instance_id,\n               pi.process_definition_id,\n               t.element_id, t.state, t.claimed_by,\n               t.variables, t.created_at, t.locked_until,\n               t.retry_count, t.max_retries\n        FROM tasks t\n        JOIN process_instances pi ON pi.id = t.process_instance_id\n        WHERE t.topic IS NOT NULL\n          AND ($1::text IS NULL OR t.topic = $1)\n          AND ($2::text IS NULL OR t.state = $2)\n          AND ($3::text IS NULL OR t.claimed_by = $3)\n        ORDER BY t.created_at DESC\n        LIMIT 200\n        ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 1,
+        "name": "topic",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 2,
+        "name": "process_instance_id",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 3,
+        "name": "process_definition_id",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 4,
+        "name": "element_id",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 5,
+        "name": "state",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 6,
+        "name": "claimed_by",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 7,
+        "name": "variables",
+        "type_info": "Jsonb"
+      },
+      {
+        "ordinal": 8,
+        "name": "created_at",
+        "type_info": "Timestamptz"
+      },
+      {
+        "ordinal": 9,
+        "name": "locked_until",
+        "type_info": "Timestamptz"
+      },
+      {
+        "ordinal": 10,
+        "name": "retry_count",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 11,
+        "name": "max_retries",
+        "type_info": "Int4"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Text",
+        "Text"
+      ]
+    },
+    "nullable": [
+      false,
+      true,
+      false,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      false,
+      false
+    ]
+  },
+  "hash": "21276eec4e04fc793768f63cb8cfd8facd6e799478515d6f5424acc62d36851f"
+}

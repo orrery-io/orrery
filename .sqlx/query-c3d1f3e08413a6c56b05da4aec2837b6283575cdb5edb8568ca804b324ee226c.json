@@ -1,0 +1,26 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        SELECT pi.id, pi.active_element_ids\n        FROM process_instances pi\n        WHERE pi.state = 'WAITING_FOR_TASK'\n          AND NOT EXISTS (\n            SELECT 1 FROM tasks t\n            WHERE t.process_instance_id = pi.id\n              AND t.state IN ('CREATED', 'CLAIMED')\n          )\n        ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 1,
+        "name": "active_element_ids",
+        "type_info": "Jsonb"
+      }
+    ],
+    "parameters": {
+      "Left": []
+    },
+    "nullable": [
+      false,
+      false
+    ]
+  },
+  "hash": "c3d1f3e08413a6c56b05da4aec2837b6283575cdb5edb8568ca804b324ee226c"
+}

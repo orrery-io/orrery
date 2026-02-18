@@ -1,0 +1,37 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        SELECT ms.id, ms.process_instance_id, ms.element_id\n        FROM message_subscriptions ms\n        JOIN process_instances pi ON pi.id = ms.process_instance_id\n        WHERE ms.message_name = $1\n          AND ms.consumed_at IS NULL\n          AND ($2::text IS NULL OR ms.correlation_key_value IS NULL OR ms.correlation_key_value = $2)\n          AND ($3::text IS NULL OR pi.id = $3)\n          AND ($4::text IS NULL OR pi.business_key = $4)\n        ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 1,
+        "name": "process_instance_id",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 2,
+        "name": "element_id",
+        "type_info": "Varchar"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Text",
+        "Text",
+        "Text"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      false
+    ]
+  },
+  "hash": "662f329169226bb275ff55b97239629fb229e205940f285693e16f7ef2eb8ffb"
+}

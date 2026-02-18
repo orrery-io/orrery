@@ -1,0 +1,18 @@
+[package]
+name = "orrery"
+version = "0.1.0"
+edition = "2021"
+description = "Mechanical orchestration for your workflows"
+license = "Apache-2.0"
+publish = false
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+quick-xml = { version = "0.39", features = ["serialize"] }
+rhai = { version = "1.24", features = ["sync"] }
+
+[dev-dependencies]
+pretty_assertions = "1"

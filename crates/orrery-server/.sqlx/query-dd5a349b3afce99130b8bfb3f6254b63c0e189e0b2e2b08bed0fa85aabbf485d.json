@@ -1,0 +1,50 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT id, process_def_key, process_def_version, element_id, expression, timer_kind FROM timer_start_definitions WHERE enabled = TRUE AND next_due_at IS NOT NULL AND next_due_at <= NOW()",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 1,
+        "name": "process_def_key",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 2,
+        "name": "process_def_version",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 3,
+        "name": "element_id",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 4,
+        "name": "expression",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 5,
+        "name": "timer_kind",
+        "type_info": "Text"
+      }
+    ],
+    "parameters": {
+      "Left": []
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "hash": "dd5a349b3afce99130b8bfb3f6254b63c0e189e0b2e2b08bed0fa85aabbf485d"
+}

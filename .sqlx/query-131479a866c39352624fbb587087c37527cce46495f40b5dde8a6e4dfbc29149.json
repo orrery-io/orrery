@@ -1,0 +1,22 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT element_id FROM tasks WHERE process_instance_id = $1 AND state = 'FAILED' ORDER BY completed_at DESC LIMIT 1",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "element_id",
+        "type_info": "Varchar"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text"
+      ]
+    },
+    "nullable": [
+      false
+    ]
+  },
+  "hash": "131479a866c39352624fbb587087c37527cce46495f40b5dde8a6e4dfbc29149"
+}
