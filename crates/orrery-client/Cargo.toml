@@ -1,6 +1,6 @@
 [package]
 name = "orrery-client"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = "Rust client SDK for the Orrery BPMN workflow engine"
 license = "Apache-2.0"
@@ -12,7 +12,7 @@ native-tls = ["reqwest/native-tls"]
 rustls = ["reqwest/rustls-tls"]
 
 [dependencies]
-orrery-types = { path = "../orrery-types", version = "0.1.0" }
+orrery-types = { path = "../orrery-types", version = "0.1.1" }
 reqwest = { version = "0.12", default-features = false, features = ["json"] }
 serde = "1"
 thiserror = "2"
