@@ -32,7 +32,7 @@ RUN rustup target add wasm32-unknown-unknown
 
 # Disable trunk's built-in wasm-opt so we can pass --enable-bulk-memory manually
 # arm64: skip wasm-opt entirely (crashes with -Oz on Apple Silicon / arm64 Docker)
-# amd64: run wasm-opt manually with --enable-bulk-memory to support memory.copy instructions
+# amd64: run wasm-opt manually with --all-features to support all WASM features Rust emits
 RUN sed -i 's/data-wasm-opt="[^"]*"/data-wasm-opt="0"/' crates/orrery-ui/index.html && \
     cd crates/orrery-ui && trunk build --release
 
@@ -40,7 +40,7 @@ RUN ARCH=$(uname -m); \
     if [ "$ARCH" = "x86_64" ]; then \
         wasm_file=$(find crates/orrery-ui/dist -name "*_bg.wasm" | head -1); \
         /root/.cache/trunk/wasm-opt-version_123/bin/wasm-opt \
-            --enable-bulk-memory -Oz \
+            --all-features -Oz \
             --output="$wasm_file" \
             "$wasm_file"; \
     fi
