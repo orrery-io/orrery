@@ -2,7 +2,7 @@
   (:require [clojure.tools.build.api :as b]
             [deps-deploy.deps-deploy :as dd]))
 
-(def lib 'myxomatozis/orrery-sdk)
+(def lib 'net.clojars.myxomatozis/orrery-sdk)
 (def class-dir "target/classes")
 
 (defn- ver [opts]
