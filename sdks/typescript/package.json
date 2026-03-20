@@ -1,5 +1,5 @@
 {
-  "name": "@orrery/sdk",
+  "name": "@orrery-io/sdk",
   "version": "0.1.4",
   "type": "module",
   "main": "./dist/index.js",

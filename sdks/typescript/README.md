@@ -1,11 +1,11 @@
-# @orrery/sdk
+# @orrery-io/sdk
 
 TypeScript SDK for [Orrery](https://github.com/orrery-io/orrery) — implement external task workers that integrate with your BPMN processes.
 
 ## Installation
 
 ```bash
-npm install @orrery/sdk
+npm install @orrery-io/sdk
 ```
 
 ## Usage
@@ -15,7 +15,7 @@ npm install @orrery/sdk
 The worker handles polling, locking, heartbeats, retries, and graceful shutdown automatically.
 
 ```typescript
-import { createWorker, subscribe, runWorker } from "@orrery/sdk";
+import { createWorker, subscribe, runWorker } from "@orrery-io/sdk";
 
 const worker = subscribe(
   createWorker({ baseUrl: "http://localhost:3000" }),
@@ -52,7 +52,7 @@ await runWorker(worker);
 Use `createClient` directly if you need manual control over polling.
 
 ```typescript
-import { createClient } from "@orrery/sdk";
+import { createClient } from "@orrery-io/sdk";
 
 const client = createClient({ baseUrl: "http://localhost:3000" });
 

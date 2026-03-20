@@ -36,7 +36,7 @@ Orrery is a self-hosted workflow engine that runs BPMN 2.0 process definitions. 
 | Language | Package | Docs |
 |----------|---------|------|
 | Rust | [`orrery-client`](https://github.com/orrery-io/orrery/tree/main/crates/orrery-client) | [Docs](https://orrery-website.vercel.app/documentation/sdks/rust) |
-| TypeScript | [`@orrery/sdk`](https://github.com/orrery-io/orrery/tree/main/sdks/typescript) | [Docs](https://orrery-website.vercel.app/documentation/sdks/typescript) |
+| TypeScript | [`@orrery-io/sdk`](https://github.com/orrery-io/orrery/tree/main/sdks/typescript) | [Docs](https://orrery-website.vercel.app/documentation/sdks/typescript) |
 | Clojure | [`io.orrery/orrery-sdk`](https://github.com/orrery-io/orrery/tree/main/sdks/clojure) | [Docs](https://orrery-website.vercel.app/documentation/sdks/clojure) |
 
 ## Documentation
