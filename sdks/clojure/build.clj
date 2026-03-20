@@ -20,7 +20,11 @@
                 :lib lib
                 :version (ver opts)
                 :basis (b/create-basis {:project "deps.edn"})
-                :src-dirs ["src"]})
+                :src-dirs ["src"]
+                :pom-data [[:licenses
+                            [:license
+                             [:name "MIT License"]
+                             [:url "https://opensource.org/licenses/MIT"]]]]})
   (b/copy-dir {:src-dirs ["src"]
                :target-dir class-dir})
   (b/jar {:class-dir class-dir
