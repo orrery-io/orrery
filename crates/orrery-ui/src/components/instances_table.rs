@@ -196,7 +196,7 @@ pub fn InstancesTable(
                                     }
                                     on:click={
                                         let nav = nav.clone();
-                                        move |_| { let _ = use_navigate()(&nav, Default::default()); }
+                                        move |_| { use_navigate()(&nav, Default::default()); }
                                     }
                                 >
                                     <td class="py-2.5 px-3 font-mono text-xs text-gray-700 dark:text-gray-300">

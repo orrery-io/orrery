@@ -166,7 +166,7 @@ pub fn DefinitionInstancesPage() -> impl IntoView {
     });
 
     // ── Pagination signals for InstancesTable ─────────────────────────────────
-    let current_page_sig = Signal::derive(move || page_param());
+    let current_page_sig = Signal::derive(page_param);
     let total_pages_sig = Signal::derive(move || pagination_data.get().1);
     let nav_page = use_navigate();
     let on_page_change = Callback::new(move |p: u32| {
@@ -377,7 +377,7 @@ pub fn DefinitionInstancesPage() -> impl IntoView {
             <StartModal
                 def_id=Signal::derive(def_id)
                 versions=versions_data.into()
-                selected_version=Signal::derive(move || version_param())
+                selected_version=Signal::derive(version_param)
                 on_close=Callback::new(move |_| set_show_start_modal.set(false))
                 on_started=Callback::new(move |_| {
                     instances.refetch();

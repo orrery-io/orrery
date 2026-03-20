@@ -19,15 +19,12 @@ pub fn BpmnViewer(
     let (drag_x, set_drag_x) = create_signal(0.0_f32);
     let (drag_y, set_drag_y) = create_signal(0.0_f32);
 
-    let svg = create_resource(
-        move || diagram_url(),
-        |url| async move {
-            match gloo_net::http::Request::get(&url).send().await {
-                Ok(resp) => resp.text().await.unwrap_or_default(),
-                Err(_) => String::new(),
-            }
-        },
-    );
+    let svg = create_resource(diagram_url, |url| async move {
+        match gloo_net::http::Request::get(&url).send().await {
+            Ok(resp) => resp.text().await.unwrap_or_default(),
+            Err(_) => String::new(),
+        }
+    });
 
     let zoom_in = move |_: MouseEvent| set_scale.update(|s| *s = (*s * 1.25).min(4.0));
     let zoom_out = move |_: MouseEvent| set_scale.update(|s| *s = (*s / 1.25).max(0.25));

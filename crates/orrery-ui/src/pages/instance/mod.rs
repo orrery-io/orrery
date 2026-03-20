@@ -71,14 +71,10 @@ pub fn InstancePage() -> impl IntoView {
 
     // Auto-refresh every 3s while instance is in an active state.
     {
-        let instance_ref = instance.clone();
-        let history_ref = history.clone();
-        let tasks_ref = tasks.clone();
-        let timers_ref = timers.clone();
         spawn_local(async move {
             loop {
                 gloo_timers::future::sleep(std::time::Duration::from_millis(3000)).await;
-                if let Some(Ok(ref inst)) = instance_ref.get() {
+                if let Some(Ok(ref inst)) = instance.get() {
                     let active = matches!(
                         inst.state.as_str(),
                         "RUNNING"
@@ -88,10 +84,10 @@ pub fn InstancePage() -> impl IntoView {
                             | "WAITING_FOR_SIGNAL"
                     );
                     if active {
-                        instance_ref.refetch();
-                        history_ref.refetch();
-                        tasks_ref.refetch();
-                        timers_ref.refetch();
+                        instance.refetch();
+                        history.refetch();
+                        tasks.refetch();
+                        timers.refetch();
                     }
                 }
             }
@@ -150,14 +146,10 @@ pub fn InstancePage() -> impl IntoView {
     };
 
     let do_fast_forward = {
-        let instance = instance.clone();
-        let timers = timers.clone();
         move |timer_id: String| {
             let inst_id = id();
             set_acting.set(true);
             set_action_status.set(None);
-            let instance = instance.clone();
-            let timers = timers.clone();
             spawn_local(async move {
                 match api::fast_forward_timer(&inst_id, &timer_id).await {
                     Ok(_) => {
@@ -173,12 +165,10 @@ pub fn InstancePage() -> impl IntoView {
     };
 
     let do_update_timer = {
-        let timers = timers.clone();
         move |(timer_id, expression): (String, String)| {
             let inst_id = id();
             set_acting.set(true);
             set_action_status.set(None);
-            let timers = timers.clone();
             spawn_local(async move {
                 match api::update_timer_expression(&inst_id, &timer_id, expression).await {
                     Ok(_) => {
@@ -315,7 +305,7 @@ pub fn InstancePage() -> impl IntoView {
                 instance_data=instance_data
                 tasks_data=tasks_data
                 acting=acting
-                on_retry=Callback::new(move |task_id| do_retry_task(task_id))
+                on_retry=Callback::new(do_retry_task)
                 open_error=Callback::new(move |_| set_show_error.set(true))
             />
 
@@ -479,8 +469,8 @@ pub fn InstancePage() -> impl IntoView {
                         <JobsTab
                             timers_data=timers_data
                             acting=acting
-                            on_fast_forward=Callback::new(do_fast_forward.clone())
-                            on_update=Callback::new(do_update_timer.clone())
+                            on_fast_forward=Callback::new(do_fast_forward)
+                            on_update=Callback::new(do_update_timer)
                         />
                     }.into_view()
                 })}

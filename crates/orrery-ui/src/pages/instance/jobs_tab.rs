@@ -51,7 +51,7 @@ pub fn JobsTab(
                         {pending.into_iter().map(|timer| {
                             view! { <PendingTimerRow timer acting on_fast_forward on_update on_edit_start on_edit_end /> }
                         }).collect_view()}
-                        {by_element.into_iter().map(|(_, mut firings)| {
+                        {by_element.into_values().map(|mut firings| {
                             // Sort firings by fired_at descending (most recent first)
                             firings.sort_by(|a, b| b.fired_at.cmp(&a.fired_at));
                             let count = firings.len();
@@ -131,10 +131,8 @@ fn PendingTimerRow(
                 // Inline edit form
                 {move || editing.get().then(|| {
                     let timer_id_save = timer_id2.clone();
-                    // Clone callbacks so each on:click handler can own its copy while the
-                    // outer reactive closure retains the original for subsequent re-runs.
-                    let on_edit_end_save = on_edit_end.clone();
-                    let on_edit_end_cancel = on_edit_end.clone();
+                    let on_edit_end_save = on_edit_end;
+                    let on_edit_end_cancel = on_edit_end;
                     view! {
                         <div class="flex items-center gap-2 mt-2">
                             <input
@@ -175,8 +173,7 @@ fn PendingTimerRow(
             <div class="flex items-center gap-2 flex-shrink-0">
                 {move || (!editing.get()).then(|| {
                     let timer_id_ff = timer_id.clone();
-                    // Clone callback and id so each on:click handler can own its copy.
-                    let on_edit_start_clone = on_edit_start.clone();
+                    let on_edit_start_clone = on_edit_start;
                     let timer_id3_clone = timer_id3.clone();
                     view! {
                         <>

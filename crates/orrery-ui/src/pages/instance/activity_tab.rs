@@ -32,8 +32,6 @@ pub fn ActivityTab(
                 <p class="p-4 text-xs text-gray-400 italic">"No history yet."</p>
             }.into_view(),
             Some(entries) => {
-                let expanded = expanded.clone();
-                let set_expanded = set_expanded.clone();
                 view! {
                     <table class="w-full text-xs">
                         <thead>
@@ -58,9 +56,6 @@ pub fn ActivityTab(
                                 let el_id = entry.element_id.clone();
                                 let vars = entry.variables_snapshot.clone();
 
-                                let expanded = expanded.clone();
-                                let set_expanded = set_expanded.clone();
-
                                 view! {
                                     <tr
                                         class=move || {
@@ -72,7 +67,6 @@ pub fn ActivityTab(
                                             }
                                         }
                                         on:click={
-                                            let set_expanded = set_expanded.clone();
                                             move |_| {
                                                 set_expanded.update(|s| {
                                                     if !s.remove(&entry_id) {

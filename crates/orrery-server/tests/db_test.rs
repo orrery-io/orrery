@@ -18,7 +18,10 @@ async fn test_migrations_run_on_connect() {
     .await
     .unwrap();
 
-    assert!(exists, "process_definitions table should exist after migration");
+    assert!(
+        exists,
+        "process_definitions table should exist after migration"
+    );
 }
 
 #[tokio::test]
