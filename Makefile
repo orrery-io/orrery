@@ -4,7 +4,7 @@ ifneq (,$(wildcard .env))
   export
 endif
 
-.PHONY: help db db-stop db-reset migrate sqlx-prepare test build run ui ui-build
+.PHONY: help db db-stop db-reset migrate sqlx-prepare test build run ui ui-build lint
 
 help:
 	@echo "Usage: make <target>"
@@ -18,6 +18,7 @@ help:
 	@echo "  run           Regenerate sqlx cache then start orrery-server"
 	@echo "  ui            Start Leptos UI dev server (trunk serve)"
 	@echo "  ui-build      Build Leptos UI for production"
+	@echo "  lint          Run clippy and rustfmt checks"
 
 db:
 	docker compose up -d
@@ -50,3 +51,7 @@ ui:
 
 ui-build:
 	cd crates/orrery-ui && trunk build --release
+
+lint:
+	cargo fmt --all -- --check
+	cargo clippy --workspace -- -D warnings

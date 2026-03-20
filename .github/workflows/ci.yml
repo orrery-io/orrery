@@ -34,3 +34,65 @@ jobs:
         run: cargo test --workspace --exclude orrery-ui --all-features
         env:
           SQLX_OFFLINE: "true"
+
+  typescript:
+    name: TypeScript SDK
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: 'sdks/typescript/.nvmrc'
+
+      - name: Install dependencies
+        working-directory: sdks/typescript
+        run: npm ci
+
+      - name: Lint
+        working-directory: sdks/typescript
+        run: npx tsc --noEmit
+
+      - name: Test
+        working-directory: sdks/typescript
+        run: npm test
+
+      - name: Build
+        working-directory: sdks/typescript
+        run: npm run build
+
+  clojure:
+    name: Clojure SDK
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - uses: DeLaGuardo/setup-clojure@13
+        with:
+          cli: latest
+
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: clojure-${{ hashFiles('sdks/clojure/deps.edn') }}
+          restore-keys: clojure-
+
+      - name: Lint
+        working-directory: sdks/clojure
+        run: clojure -M:lint
+
+      - name: Test
+        working-directory: sdks/clojure
+        run: clojure -M:test
+
+      - name: Build
+        working-directory: sdks/clojure
+        run: clojure -T:build jar

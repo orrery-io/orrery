@@ -1,33 +1,41 @@
 (ns build
-  (:require [clojure.tools.build.api :as b]))
+  (:require [clojure.tools.build.api :as b]
+            [deps-deploy.deps-deploy :as dd]))
 
 (def lib 'io.orrery/orrery-sdk)
-(def major 0)
-(def minor 1)
-(defn version
-  ([] (format "%d.%d.%s" major minor (b/git-count-revs nil)))
-  ([_] (version)))
 (def class-dir "target/classes")
-(defn jar-file [] (format "target/%s-%s.jar" (name lib) (version)))
+
+(defn- ver [opts]
+  (or (:version opts)
+      (format "0.1.%s" (b/git-count-revs nil))))
+
+(defn- jar-file [opts]
+  (format "target/%s-%s.jar" (name lib) (ver opts)))
 
 (defn clean [_]
   (b/delete {:path "target"}))
 
-(defn jar [_]
+(defn jar [opts]
   (b/write-pom {:class-dir class-dir
                 :lib lib
-                :version (version)
+                :version (ver opts)
                 :basis (b/create-basis {:project "deps.edn"})
                 :src-dirs ["src"]})
   (b/copy-dir {:src-dirs ["src"]
                :target-dir class-dir})
   (b/jar {:class-dir class-dir
-          :jar-file (jar-file)}))
+          :jar-file (jar-file opts)}))
 
-(defn install [_]
-  (jar nil)
+(defn install [opts]
+  (jar opts)
   (b/install {:basis (b/create-basis {:project "deps.edn"})
               :lib lib
-              :version (version)
-              :jar-file (jar-file)
+              :version (ver opts)
+              :jar-file (jar-file opts)
               :class-dir class-dir}))
+
+(defn deploy [opts]
+  (jar opts)
+  (dd/deploy {:installer :remote
+              :artifact  (jar-file opts)
+              :pom-file  (b/pom-path {:lib lib :class-dir class-dir})}))

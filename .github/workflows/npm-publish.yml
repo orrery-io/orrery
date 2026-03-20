@@ -1,0 +1,47 @@
+name: Publish npm
+
+on:
+  push:
+    tags:
+      - 'v[0-9]+.*'
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    name: Publish to npm
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: 'sdks/typescript/.nvmrc'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Verify version matches tag
+        working-directory: sdks/typescript
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          PKG_VER=$(node -p "require('./package.json').version")
+          if [ "$PKG_VER" != "$TAG" ]; then
+            echo "ERROR: package.json version $PKG_VER does not match tag $TAG"
+            exit 1
+          fi
+          echo "Version matches tag: $TAG"
+
+      - name: Install dependencies
+        working-directory: sdks/typescript
+        run: npm ci
+
+      - name: Build
+        working-directory: sdks/typescript
+        run: npm run build
+
+      - name: Publish
+        working-directory: sdks/typescript
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

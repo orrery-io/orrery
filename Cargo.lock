@@ -2107,7 +2107,7 @@ dependencies = [
 
 [[package]]
 name = "orrery-client"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "orrery-types",
  "reqwest",
@@ -2154,7 +2154,7 @@ dependencies = [
 
 [[package]]
 name = "orrery-types"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "chrono",
  "serde",
@@ -2182,7 +2182,7 @@ dependencies = [
 
 [[package]]
 name = "orrery-worker"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "anyhow",
  "orrery-client",

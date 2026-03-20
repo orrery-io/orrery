@@ -6,7 +6,15 @@ use orrery_types::{
 };
 
 fn client() -> OrreryClient {
-    let api_url = std::env::var("ORRERY_API_URL").unwrap_or("http://localhost:3000".to_string());
+    #[cfg(debug_assertions)]
+    let api_url = {
+        let host = option_env!("ORRERY_HOST").unwrap_or("localhost");
+        let port = option_env!("ORRERY_PORT").unwrap_or("3000");
+        format!("http://{host}:{port}")
+    };
+    #[cfg(not(debug_assertions))]
+    let api_url = "";
+
     OrreryClient::new(api_url)
 }
 
