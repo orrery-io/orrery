@@ -71,7 +71,7 @@ git add Cargo.toml Cargo.lock \
 if [[ -f "$TS_PKG" ]]; then
   git add "$TS_PKG"
 fi
-git commit -m "chore: bump to $TAG"
+git commit -m "chore: bump to $TAG [skip ci]"
 
 echo "==> Tagging and pushing"
 git tag "$TAG"
