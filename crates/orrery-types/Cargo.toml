@@ -1,6 +1,6 @@
 [package]
 name = "orrery-types"
-version = "0.1.3"
+version = "0.1.4"
 edition = "2021"
 description = "Shared types for the Orrery BPMN workflow engine"
 license = "Apache-2.0"
