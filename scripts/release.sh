@@ -57,11 +57,20 @@ done
 echo "==> Refreshing Cargo.lock"
 cargo check -p orrery-types -p orrery-client -p orrery-worker
 
+TS_PKG="sdks/typescript/package.json"
+if [[ -f "$TS_PKG" ]]; then
+  echo "==> Bumping TypeScript SDK to $VERSION"
+  sed -i '' "s/\"version\": \".*\"/\"version\": \"$VERSION\"/" "$TS_PKG"
+fi
+
 echo "==> Committing"
 git add Cargo.toml Cargo.lock \
   crates/orrery-types/Cargo.toml \
   crates/orrery-client/Cargo.toml \
   crates/orrery-worker/Cargo.toml
+if [[ -f "$TS_PKG" ]]; then
+  git add "$TS_PKG"
+fi
 git commit -m "chore: bump to $TAG"
 
 echo "==> Tagging and pushing"

@@ -6,7 +6,7 @@ Clojure SDK for [Orrery](https://github.com/orrery-io/orrery) — implement exte
 
 ```clojure
 ;; deps.edn
-io.orrery/orrery-sdk {:mvn/version "0.1.0"}
+myxomatozis/orrery-sdk {:mvn/version "0.1.0"}
 ```
 
 ## Usage
